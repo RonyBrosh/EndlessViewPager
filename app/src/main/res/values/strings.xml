@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">EndlessViewPager</string>
+
+    <string name="card_number_format">****  ****  ****  %1$s</string>
+</resources>
