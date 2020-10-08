@@ -18,21 +18,25 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val data = listOf(
-                CardInfo(last4Digits = "4444", status = CardStatus.FROZEN),
-                CardInfo(last4Digits = "5555", status = CardStatus.ACTIVE),
+            CardInfo(last4Digits = "4444", status = CardStatus.FROZEN),
+            CardInfo(last4Digits = "5555", status = CardStatus.ACTIVE),
 
-                CardInfo(last4Digits = "1111", status = CardStatus.ACTIVE),
-                CardInfo(last4Digits = "2222", status = CardStatus.FROZEN),
-                CardInfo(last4Digits = "3333", status = CardStatus.ACTIVE),
-                CardInfo(last4Digits = "4444", status = CardStatus.FROZEN),
-                CardInfo(last4Digits = "5555", status = CardStatus.ACTIVE),
+            CardInfo(last4Digits = "1111", status = CardStatus.ACTIVE),
+            CardInfo(last4Digits = "2222", status = CardStatus.FROZEN),
+            CardInfo(last4Digits = "3333", status = CardStatus.ACTIVE),
+            CardInfo(last4Digits = "4444", status = CardStatus.FROZEN),
+            CardInfo(last4Digits = "5555", status = CardStatus.ACTIVE),
 
-                CardInfo(last4Digits = "1111", status = CardStatus.ACTIVE),
-                CardInfo(last4Digits = "2222", status = CardStatus.FROZEN)
+            CardInfo(last4Digits = "1111", status = CardStatus.ACTIVE),
+            CardInfo(last4Digits = "2222", status = CardStatus.FROZEN)
         )
 
         with(viewPager2) {
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    pageIndicatorView.selection = position - 2
+                }
+
                 override fun onPageScrollStateChanged(state: Int) {
                     super.onPageScrollStateChanged(state)
                     if (state == ViewPager2.SCROLL_STATE_IDLE || state == ViewPager2.SCROLL_STATE_DRAGGING) {
@@ -53,5 +57,11 @@ class MainActivity : AppCompatActivity() {
             offscreenPageLimit = 2
             setCurrentItem(2, false)
         }
+
+        pageIndicatorView.apply {
+            count = data.size - 4
+            selection = 0
+        }
+
     }
 }
